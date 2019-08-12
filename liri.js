@@ -26,63 +26,33 @@ let inquirer = require("inquirer");
 
 
 
-inquirer.prompt([
-  {
-    type: "list",
-    message: "I'm kind of a basic b (ot) but I can do some tricks. Wanna hear a song on spotify? Interested to know where and when your favorite bands are playing? Need some movie details so you can win movie trivia and finally beat your friend who thinks he knows everything? I got you covered. Pick your poison.",
-    choices: ["spotify-this-song", "concert-this", "movie-this", "do-what-it-says"],
-    name: "case-input"
-  }
-])
+// inquirer.prompt([
+//   {
+//     type: "list",
+//     message: "I'm kind of a basic b (ot) but I can do some tricks. Wanna hear a song on spotify? Interested to know where and when your favorite bands are playing? Need some movie details so you can win movie trivia and finally beat your friend who thinks he knows everything? I got you covered. Pick your poison.",
+//     choices: ["spotify-this-song", "concert-this", "movie-this", "do-what-it-says"],
+//     name: "case-input"
+//   }
+// ])
 
-  .then(function (userChoice) {
-    if (userChoice.case-input === "spotify-this-song") {
-      console.log("------------------------");
-      inquirer.prompt([
-        {
-          type: "input",
-          message: "What song is your heart and soul inspired by?",
-          name: "input-spotify"
-        }
-      ]).then(function (result) {
-        if (result.input-spotify == "") {
-          input = "The Sign";
-        } else if(input = result.input-spotify){
-          runThis(userChoice.case-input, input.join(" "));
-        }
-      }
-    else if (userChoice.case-input === "conert-this") {
-      console.log("------------------------");
-      inquirer.prompt([
-        {
-          type: "input",
-          message: "What concert are you looking for?",
-          name: "input-concert"
-        }
-      ])
-    } else if (userChoice.case-input === "movie-this") {
-      console.log("------------------------");
-      inquirer.prompt([
-        {
-          type: "input",
-          message: "What movie are you interested in?",
-          name: "input-movie"
-        }
-      ])
-    } else if (userChoice.case-input === "do-what-it-says") {
-      console.log("------------------------");
-      inquirer.prompt([
-        {
-          type: "input",
-          message: "just do what i say",
-          name: "input-do"
-        }
-      ])
-    }
-
-  
-
-
+  // .then(function (userChoice) {
+  //   if (userChoice.case-input === "spotify-this-song") {
+  //     console.log("------------------------");
+  //     inquirer.prompt([
+  //       {
+  //         type: "input",
+  //         message: "What song is your heart and soul inspired by?",
+  //         name: "input-spotify"
+  //       }
+  //     ]).then(function (result) {
+  //       if (result.input-spotify == "") {
+  //         input = "The Sign";
+  //       } else if(input = result.input-spotify){
+  //         runThis(userChoice.case-input, input.join(" "));
+  //       }})
+  //     }
+  //   })
+   
       var spotSwitch = (input) => {
         spotify.search({ type: 'track', query: input, limit: 5, })
           .then(function (response) {
@@ -211,9 +181,9 @@ var pick = function (caseInput, input) {
     case "movie-this":
       movieSwitch(input);
       break;
-    // case "do-what-it-says":
-    // doWhatItSays();
-    // break;
+    case "do-what-it-says":
+    doWhatItSays();
+    break;
     default:
       console.log("LIRI doesn't know that");
   }
@@ -226,4 +196,4 @@ var runThis = function (caseInput, input) {
 
       // MAIN PROCESS
       // =====================================
-      // runThis(process.argv[2], process.argv.slice(3).join(" "));
+      runThis(process.argv[2], process.argv.slice(3).join(" "));
