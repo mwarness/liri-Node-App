@@ -29,29 +29,29 @@ let inquirer = require("inquirer");
 // inquirer.prompt([
 //   {
 //     type: "list",
-//     message: "I'm kind of a basic b (ot) but I can do some tricks. Wanna hear a song on spotify? Interested to know where and when your favorite bands are playing? Need some movie details so you can win movie trivia and finally beat your friend who thinks he knows everything? I got you covered. Pick your poison.",
+//      message: "I'm kind of a basic b (ot) but I can do some tricks. Wanna hear a song on spotify? Interested to know where and when your favorite bands are playing? Need some movie details so you can win movie trivia and finally beat your friend who thinks he knows everything? I got you covered. Pick your poison.",
 //     choices: ["spotify-this-song", "concert-this", "movie-this", "do-what-it-says"],
 //     name: "case-input"
 //   }
 // ])
 
-  // .then(function (userChoice) {
-  //   if (userChoice.case-input === "spotify-this-song") {
-  //     console.log("------------------------");
-  //     inquirer.prompt([
-  //       {
-  //         type: "input",
-  //         message: "What song is your heart and soul inspired by?",
-  //         name: "input-spotify"
-  //       }
-  //     ]).then(function (result) {
-  //       if (result.input-spotify == "") {
-  //         input = "The Sign";
-  //       } else if(input = result.input-spotify){
-  //         runThis(userChoice.case-input, input.join(" "));
-  //       }})
-  //     }
-  //   })
+//   .then(function (userChoice) {
+//     if (userChoice.case-input === "spotify-this-song") {
+//       console.log("------------------------");
+//       inquirer.prompt([
+//         {
+//           type: "input",
+//           message: "What song is your heart and soul inspired by?",
+//           name: "input-spotify"
+//         }
+//       ]).then(function (result) {
+//         if (result.input-spotify == "") {
+//           input = "The Sign";
+//         } else if(input = result.input-spotify){
+//           runThis(userChoice.case-input, input.join(" "));
+//         }})
+//       }
+//     })
    
       var spotSwitch = (input) => {
         spotify.search({ type: 'track', query: input, limit: 5, })
@@ -61,10 +61,10 @@ let inquirer = require("inquirer");
       for (let i = 0; i < data.length; i++) {
         console.log("--------------------------");
 
-        console.log("Artist Name", data[i].artists[0].name);
-        console.log("Song Name", data[i].name);
-        console.log("Preview Url", data[i].preview_url);
-        console.log("Album Name", data[i].album.name);
+        console.log("Artist Name" + data[i].artists[0].name);
+        console.log("Song Name" + data[i].name);
+        console.log("Preview Url" + data[i].preview_url);
+        console.log("Album Name" + data[i].album.name);
 
         console.log("--------------------------");
 
@@ -165,6 +165,26 @@ const bandSwitch = (input) => {
     });
 }
 
+// create a variable do it what it that equals a function which will read the file with fs function named random.txt
+
+var doWhatItSays = function() {
+  fs.readFile("random.txt","utf8",
+  function(eror,data){
+    console.log(data);
+    
+    var dataArr = data.split(",");
+
+    if (dataArr.length === 2){
+      pick(dataArr[0],dataArr[1]);
+    }else if (dataArr.length === 1)
+    {
+      pick(dataArr[0]);
+    }
+    
+  });
+};
+ 
+
 
 
 
@@ -189,9 +209,11 @@ var pick = function (caseInput, input) {
   }
 };
 
+
 var runThis = function (caseInput, input) {
   pick(caseInput, input);
 };
+;
 
 
       // MAIN PROCESS
